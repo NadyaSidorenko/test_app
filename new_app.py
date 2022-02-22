@@ -39,15 +39,14 @@ df_test = pd.DataFrame({'list_n':[0,1,2,3,4,5,6,7,8,9]})
 options_t = st.multiselect(
     'Выбор тестовой группы', 
     df_test['list_n'].unique())
-st.write('Выш выбор:', options_t)
 
 options_k = st.multiselect(
     'Выбор контрольной группы', 
     df_test['list_n'].unique())
-st.write('Выш выбор:', options_k)
 
 st.title('Сервис экспериментов и тестов на Streamlit')
 x = st.slider('x')
 st.write('выбор периода', x, 'дней')
 
 st.sidebar.radio('кнопка', options=['Сформировать', 'Сохранить результаты'])
+st.write(option, option_e, options_k, options_t)
