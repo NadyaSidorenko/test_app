@@ -58,6 +58,7 @@ if option_e=='Titanic':
                         labels=dict(Sex="пол", value="Доля уникальных пассажиров, %", variable="обозначения"))
         st.write(fig)
         #fig2=sns.histplot(data=titanic, x="Age", hue="Sex")
+        st.write('Распределение возрастов пассажиров')
         fig2=np.histogram(titanic['Age'], bins=100, range=(0,titanic['Age'].max() ))[0]
         st.bar_chart(fig2)
 if option_e=='Iris':
