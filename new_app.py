@@ -15,7 +15,7 @@ import os as os
 import pandas as pd
 import numpy as np
 from pathlib import Path
-from ns_app.download import csv_download_link
+from download import csv_download_link
 #название приложения
 st.title('Сервис для работы с датасетами')
 from ns_app.test import test_v
