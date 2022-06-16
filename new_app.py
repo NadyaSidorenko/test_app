@@ -15,10 +15,6 @@ import os as os
 import pandas as pd
 import numpy as np
 from pathlib import Path
-import tkinter
-import _tkinter
-#import tkFileDialog
-import tkinter.filedialog
 from ns_app.download import csv_download_link
 #название приложения
 st.title('Сервис для работы с датасетами')
