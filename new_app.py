@@ -72,7 +72,7 @@ if option_e=='map':
     marker_coordinates = [wifi['Coordinates'] for wifi in wifi_points]
     marker_coordinates = [[float(x) for x in y] for y in marker_coordinates]
 
-    m = Map(center=(55.753215, 37.622504), zoom=11)
+    
 
     markers = [Marker(location=(marker_coordinates[i])) for i in range(len(marker_coordinates))]
 
