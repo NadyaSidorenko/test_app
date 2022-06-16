@@ -60,7 +60,7 @@ if option_e=='Titanic':
         #fig2=sns.histplot(data=titanic, x="Age", hue="Sex")
         fig2=np.histogram(titanic['Age'], bins=100, range=(0,titanic['Age'].max() ))[0]
         st.bar_chart(fig2)
-if option_e=='map':
+if option_e=='Iris':
     file_name = 'https://raw.githubusercontent.com/tttdddnet/Python-Jupyter-Geo/main/data-9776-2020-12-21.csv'
     df = pd.read_csv('test_iris.csv')
     st.write(df)
