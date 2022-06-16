@@ -33,7 +33,7 @@ st.sidebar.info(
 #    'Выбор датасета',
 #     df['names'].unique())
 
-experiment={'names':['Titanic', 'map']}
+experiment={'names':['Titanic', 'Iris']}
 df_e = pd.DataFrame(experiment)
 option_e = st.selectbox(
    'Список датасетов',
@@ -62,31 +62,6 @@ if option_e=='Titanic':
         st.bar_chart(fig2)
 if option_e=='map':
     file_name = 'https://raw.githubusercontent.com/tttdddnet/Python-Jupyter-Geo/main/data-9776-2020-12-21.csv'
-    df = pd.read_csv(file_name, sep=';', encoding='cp1251')
-    wifi_points = []
-    i = 0
-    while i < len(df.index):
-        wifi_points.append({'index': i, 'Coordinates': [df['Latitude_WGS84'][i], df['Longitude_WGS84'][i]], 'Location': df['Location'][i], 'NumberOfAccessPoints': df['NumberOfAccessPoints'][i]})
-        i += 1
-
-    marker_coordinates = [wifi['Coordinates'] for wifi in wifi_points]
-    marker_coordinates = [[float(x) for x in y] for y in marker_coordinates]
-
+    df = pd.read_csv('test_iris.csv')
+    st.write(df)
     
-
-    markers = [Marker(location=(marker_coordinates[i])) for i in range(len(marker_coordinates))]
-
-    info_box_template = """
-    <dl>
-    <dt>Адрес:</dt><dd>{Location}</dd>
-    <dt>Количество точек доступа:</dt><dd>{NumberOfAccessPoints}</dd>
-    </dl>
-    """
-
-    locations_info  = [info_box_template.format(**point) for point in wifi_points]
-
-    for i in range(len(markers)):
-        markers[i].popup = HTML(locations_info[i])
-        m.add_layer(markers[i])
-
-    m
