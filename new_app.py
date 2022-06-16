@@ -63,16 +63,27 @@ if option_e=='Titanic':
 if option_e=='map':
     file_name = 'https://raw.githubusercontent.com/tttdddnet/Python-Jupyter-Geo/main/data-9776-2020-12-21.csv'
     df = pd.read_csv(file_name, sep=';', encoding='cp1251')
-    def mpoint(lat, lon):
-        return (np.average(lat), np.average(lon))
-    def draw_map_cases():
-        # fig_m = px.choropleth(df, locations="iso_code",
-        #                  color="NumberOfAccessPoints",
-        #                  hover_name="location",
-        #                  title="Количество точек доступа",
-        #                  color_continuous_scale=px.colors.sequential.Redor)
-        fig_m=plt.scatter(x=df['Longitude_WGS84'], y=df['Latitude_WGS84'])
-        return fig_m
-    m = Map(center=(55.753215, 37.622504), zoom=11)
-    fig_m=plt.scatter(x=df['Longitude_WGS84'], y=df['Latitude_WGS84'])
-    m.add_layer(fig_m)
+    gmaps.configure(api_key='...')
+
+    wifi_points = []
+    i = 0
+    while i < len(df.index):
+        wifi_points.append({'Coordinates': [df['Latitude_WGS84'][i], df['Longitude_WGS84'][i]], 'Location': df['Location'][i], 'NumberOfAccessPoints': df['NumberOfAccessPoints'][i]})
+        i += 1
+
+    marker_coordinates = [wifi['Coordinates'] for wifi in wifi_points]
+    marker_coordinates = [[float(x) for x in y] for y in marker_coordinates] # здесь мы проходимся по элементами вложенных списков и меняем их типы со str на float
+
+    info_box_template = """
+    <dl>
+    <dt>Адрес:</dt><dd>{Location}</dd>
+    <dt>Количество точек доступа:</dt><dd>{NumberOfAccessPoints}</dd>
+    </dl>
+    """
+
+    marker_info  = [info_box_template.format(**points) for points in wifi_points]
+    marker_layer = gmaps.marker_layer(marker_coordinates, info_box_content=marker_info )
+
+    fig = gmaps.figure()
+    fig.add_layer(marker_layer)
+    fig
