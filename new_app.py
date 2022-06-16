@@ -39,7 +39,7 @@ option_e = st.selectbox(
    'Список датасетов',
     df_e['names'].unique())
 if option_e=='Titanic':
-    titanic=pd.read_csv('ns_app/Titanic.csv')
+    titanic=pd.read_csv('https://github.com/NadyaSidorenko/test_app/blob/main/titanic.csv')
     st.write(titanic)
     if st.button('Статистический анализ'):
         pval_amb=test_v(titanic.query('Sex=="male"')['PassengerId'].nunique(),
