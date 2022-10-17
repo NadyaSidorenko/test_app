@@ -73,32 +73,32 @@ if option_e=='Titanic':
     titanic=pd.read_csv('titanic.csv')
     st.write(titanic)
     graph_name={'names':['линейный','столбчатая диаграмма', 'точечный график']}
-        df_g = pd.DataFrame(graph_name)
-        option_g = st.selectbox(
-           'Выбор графика',
-            df_g['names'].unique())
-        x_name={'names':list(dataframe.columns)}
-        df_x = pd.DataFrame(x_name)
-        option_x = st.selectbox(
-           'Выбор оси Х',
-            df_x['names'].unique())
-        y_name={'names':list(dataframe.columns)}
-        df_y = pd.DataFrame(y_name)
-        option_y = st.selectbox(
-           'Выбор оси Y',
-            df_y['names'].unique())
-        if option_g=='линейный':
-            fig1=go.Figure()
-            fig1 = px.line(titanic, x=str(option_x), y=str(option_y))
-            st.write(fig1)
-        if option_g=='точечный график':
-            fig1=go.Figure()
-            fig1 = px.scatter(titanic, x=str(option_x), y=str(option_y))
-            st.write(fig1)
-        if option_g=='столбчатая диаграмма':
-            fig1=go.Figure()
-            fig1 = px.bar(titanic, x=str(option_x), y=str(option_y))
-            st.write(fig1)
+    df_g = pd.DataFrame(graph_name)
+    option_g = st.selectbox(
+       'Выбор графика',
+        df_g['names'].unique())
+    x_name={'names':list(dataframe.columns)}
+    df_x = pd.DataFrame(x_name)
+    option_x = st.selectbox(
+       'Выбор оси Х',
+        df_x['names'].unique())
+    y_name={'names':list(dataframe.columns)}
+    df_y = pd.DataFrame(y_name)
+    option_y = st.selectbox(
+       'Выбор оси Y',
+        df_y['names'].unique())
+    if option_g=='линейный':
+        fig1=go.Figure()
+        fig1 = px.line(titanic, x=str(option_x), y=str(option_y))
+        st.write(fig1)
+    if option_g=='точечный график':
+        fig1=go.Figure()
+        fig1 = px.scatter(titanic, x=str(option_x), y=str(option_y))
+        st.write(fig1)
+    if option_g=='столбчатая диаграмма':
+        fig1=go.Figure()
+        fig1 = px.bar(titanic, x=str(option_x), y=str(option_y))
+        st.write(fig1)
     if st.button('Статистический анализ'):
         pval_amb=test_v(titanic.query('Sex=="male"')['PassengerId'].nunique(),
                            titanic['PassengerId'].nunique(),
