@@ -23,11 +23,16 @@ from ns_app.test import test_v
 st.sidebar.title("Справка")
 st.sidebar.info(
     """
-    Здесь будет располагаться инструкция по работе с приложением.
+    1. Выбор варианта "свой датасет"
+        1.1 Выберете файл в формате csv
+        1.2 Выберете тип графика и оси
+        1.3 Получен график
+    2. Выбор варианта "Titanic"
+        Демонстрационный вариант без загрузки своего датасета. Графически показывает распределение пассажиров по возрастам и долю мужичн и женщин среди пассажиров.
     """
 )
 
-experiment={'names':['свой датасет','Titanic', 'Iris']}
+experiment={'names':['свой датасет','Titanic']}#, 'Iris']}
 df_e = pd.DataFrame(experiment)
 option_e = st.selectbox(
    'Список датасетов',
@@ -84,7 +89,7 @@ if option_e=='Titanic':
         st.write('Распределение возрастов пассажиров')
         fig2=np.histogram(titanic['Age'], bins=100, range=(0,titanic['Age'].max() ))[0]
         st.bar_chart(fig2)
-if option_e=='Iris':
-    file_name = 'https://raw.githubusercontent.com/tttdddnet/Python-Jupyter-Geo/main/data-9776-2020-12-21.csv'
-    df = pd.read_csv('test_iris.csv')
-    st.write(df)
+# if option_e=='Iris':
+#     file_name = 'https://raw.githubusercontent.com/tttdddnet/Python-Jupyter-Geo/main/data-9776-2020-12-21.csv'
+#     df = pd.read_csv('test_iris.csv')
+#     st.write(df)
