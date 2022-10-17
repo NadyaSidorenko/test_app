@@ -34,35 +34,36 @@ option_e = st.selectbox(
     df_e['names'].unique())
 if option_e=='свой датасет':
     uploaded_file = st.file_uploader("Выберете CSV файл", accept_multiple_files=False)
-    dataframe = pd.read_csv(uploaded_file)
-    st.write(dataframe.head())
-    graph_name={'names':['линейный','столбчатая диаграмма', 'точечный график']}
-    df_g = pd.DataFrame(graph_name)
-    option_g = st.selectbox(
-       'Выбор графика',
-        df_g['names'].unique())
-    x_name={'names':list(dataframe.columns)}
-    df_x = pd.DataFrame(x_name)
-    option_x = st.selectbox(
-       'Выбор оси Х',
-        df_x['names'].unique())
-    y_name={'names':list(dataframe.columns)}
-    df_y = pd.DataFrame(y_name)
-    option_y = st.selectbox(
-       'Выбор оси Y',
-        df_y['names'].unique())
-    if option_g=='линейный':
-        fig1=go.Figure()
-        fig1 = px.line(dataframe, x=str(option_x), y=str(option_y))
-        st.write(fig1)
-    if option_g=='точечный график':
-        fig1=go.Figure()
-        fig1 = px.scatter(dataframe, x=str(option_x), y=str(option_y))
-        st.write(fig1)
-    if option_g=='столбчатая диаграмма':
-        fig1=go.Figure()
-        fig1 = px.bar(dataframe, x=str(option_x), y=str(option_y))
-        st.write(fig1)
+    if uploaded_file is not None:
+        dataframe = pd.read_csv(uploaded_file)
+        st.write(dataframe.head())
+        graph_name={'names':['линейный','столбчатая диаграмма', 'точечный график']}
+        df_g = pd.DataFrame(graph_name)
+        option_g = st.selectbox(
+           'Выбор графика',
+            df_g['names'].unique())
+        x_name={'names':list(dataframe.columns)}
+        df_x = pd.DataFrame(x_name)
+        option_x = st.selectbox(
+           'Выбор оси Х',
+            df_x['names'].unique())
+        y_name={'names':list(dataframe.columns)}
+        df_y = pd.DataFrame(y_name)
+        option_y = st.selectbox(
+           'Выбор оси Y',
+            df_y['names'].unique())
+        if option_g=='линейный':
+            fig1=go.Figure()
+            fig1 = px.line(dataframe, x=str(option_x), y=str(option_y))
+            st.write(fig1)
+        if option_g=='точечный график':
+            fig1=go.Figure()
+            fig1 = px.scatter(dataframe, x=str(option_x), y=str(option_y))
+            st.write(fig1)
+        if option_g=='столбчатая диаграмма':
+            fig1=go.Figure()
+            fig1 = px.bar(dataframe, x=str(option_x), y=str(option_y))
+            st.write(fig1)
 if option_e=='Titanic':
     titanic=pd.read_csv('titanic.csv')
     st.write(titanic)
