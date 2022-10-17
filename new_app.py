@@ -32,7 +32,7 @@ st.sidebar.info(
     """
 )
 
-experiment={'names':['свой датасет','Titanic', 'Iris']}
+experiment={'names':['свой датасет','Titanic']}#, 'Iris']}
 df_e = pd.DataFrame(experiment)
 option_e = st.selectbox(
    'Список датасетов',
@@ -77,12 +77,12 @@ if option_e=='Titanic':
     option_g = st.selectbox(
        'Выбор графика',
         df_g['names'].unique())
-    x_name={'names':list(dataframe.columns)}
+    x_name={'names':list(titanic.columns)}
     df_x = pd.DataFrame(x_name)
     option_x = st.selectbox(
        'Выбор оси Х',
         df_x['names'].unique())
-    y_name={'names':list(dataframe.columns)}
+    y_name={'names':list(titanic.columns)}
     df_y = pd.DataFrame(y_name)
     option_y = st.selectbox(
        'Выбор оси Y',
